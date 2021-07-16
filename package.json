@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com:rampatra/wedding-website.git"
+    "url": "git+ssh://git@github.com:ronin11/wedding-website.git"
   },
   "keywords": [
     "wedding",
@@ -17,7 +17,7 @@
   ],
   "author": "Ram Patra",
   "license": "GPL-3.0",
-  "homepage": "https://github.com/rampatra/wedding-website",
+  "homepage": "https://github.com/ronin11/wedding-website",
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-rename": "^1.4.0",
@@ -27,6 +27,7 @@
   "dependencies": {
     "animate.css": "^3.7.2",
     "font-awesome": "^4.7.0",
+    "node-sass": "^4.14.0",
     "waypoints": "^4.0.1"
   }
 }

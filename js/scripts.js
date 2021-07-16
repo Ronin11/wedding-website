@@ -184,41 +184,61 @@ $(document).ready(function () {
         },
         data: {
             // Event title
-            title: "Ram and Antara's Wedding",
+            title: "Tacos and Brews after the I do's",
 
             // Event start date
-            start: new Date('Nov 27, 2017 10:00'),
+            start: new Date('Sept 19, 2021 14:00'),
 
             // Event duration (IN MINUTES)
             // duration: 120,
 
             // You can also choose to set an end time
             // If an end time is set, this will take precedence over duration
-            end: new Date('Nov 29, 2017 00:00'),
+            end: new Date('Sept 19, 2021 19:00'),
 
             // Event Address
-            address: 'ITC Fortune Park Hotel, Kolkata',
+            address: '2940 West 10460 South, South Jordan Utah, 84095',
 
             // Event Description
-            description: "We can't wait to see you on our big day. For any queries or issues, please contact Mr. Amit Roy at +91 9876543210."
+            description: "The wedding party 2020 didn't let us have."
         }
     });
 
     $('#add-to-cal').html(myCalendar);
+
+		jQuery.postCORS = function(url, data, func) {
+			if(func == undefined) func = function(){};
+			return $.ajax({
+				crossDomain: true,
+				type: 'POST', 
+				url: url, 
+				data: data, 
+				dataType: 'jsonp', 
+				contentType: 'application/x-www-form-urlencoded', 
+				xhrFields: { withCredentials: true }, 
+				success: function(res) { func(res) }, 
+				error: function(err) { 
+					console.log("postCors Err: ", err)
+					func({})
+				}
+			});
+		}
 
 
     /********************** RSVP **********************/
     $('#rsvp-form').on('submit', function (e) {
         e.preventDefault();
         var data = $(this).serialize();
+				var googleScriptsEndpoint = "https://script.google.com/macros/s/AKfycbyf1qZ-9v04AoR1MP6qbabLV3gImDIb3oI5cs5DNsQHBArBN51zye9t1Y01DBu4cwlo/exec";
 
         $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-        if (MD5($('#invite_code').val()) !== 'b0e53b10c1f55ede516b240036b88f40'
-            && MD5($('#invite_code').val()) !== '2ac7f43695eb0479d5846bb38eec59cc') {
+        if (MD5($('#invite_code').val()) !== '62d9e968e55f3c956da206b19d5b8baf'
+            && MD5($('#invite_code').val()) !== '70673321a0e032bb88c1d52c140d35f8'
+						&& MD5($('#invite_code').val()) !== '9aa48424696e3a848ccab1965c1bb34e') {
             $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
         } else {
-            $.post('https://script.google.com/macros/s/AKfycbzUqz44wOat0DiGjRV1gUnRf4HRqlRARWggjvHKWvqniP7eVDG-/exec', data)
+            $.postCORS(googleScriptsEndpoint, data)
                 .done(function (data) {
                     console.log(data);
                     if (data.result === "error") {
@@ -241,7 +261,7 @@ $(document).ready(function () {
 
 // Google map
 function initMap() {
-    var location = {lat: 22.5932759, lng: 88.27027720000001};
+    var location = {lat: 40.5613894, lng: -111.9647599};
     var map = new google.maps.Map(document.getElementById('map-canvas'), {
         zoom: 15,
         center: location,
@@ -255,7 +275,7 @@ function initMap() {
 }
 
 function initBBSRMap() {
-    var la_fiesta = {lat: 20.305826, lng: 85.85480189999998};
+    var la_fiesta = {lat: 40.5613894, lng: -111.9647599};
     var map = new google.maps.Map(document.getElementById('map-canvas'), {
         zoom: 15,
         center: la_fiesta,
